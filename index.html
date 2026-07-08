@@ -1,125 +1,33 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>방탈출 예약</title>
-
-<style>
-body{
-    font-family: Arial, sans-serif;
-    background:#f4f4f4;
-    display:flex;
-    justify-content:center;
-    margin-top:40px;
-}
-
-.container{
-    background:white;
-    width:350px;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,0.2);
-}
-
-h2{
-    text-align:center;
-}
-
-select,input,button{
-    width:100%;
-    padding:10px;
-    margin-top:10px;
-    box-sizing:border-box;
-}
-
-button{
-    background:#4CAF50;
-    color:white;
-    border:none;
-    cursor:pointer;
-}
-
-button:hover{
-    background:#45a049;
-}
-
-#result{
-    margin-top:20px;
-    text-align:center;
-    font-weight:bold;
-}
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>방탈출 예약</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
 
-<h2>방탈출 예약</h2>
+    <h2>방탈출 예약</h2>
 
-<label>예약 시간</label>
-<select id="time">
-</select>
+    <label>예약 시간</label>
+    <select id="time"></select>
 
-<label>이름</label>
-<input type="text" id="name">
+    <label>이름</label>
+    <input type="text" id="name">
 
-<label>학번</label>
-<input type="text" id="student">
+    <label>학번</label>
+    <input type="text" id="student">
 
-<button onclick="reserve()">예약하기</button>
+    <button onclick="reserve()">예약하기</button>
 
-<div id="result"></div>
+    <div id="result"></div>
 
 </div>
 
-<script>
-
-const times = [
-"10:00",
-"10:20",
-"10:40",
-"11:00",
-"11:20",
-"11:40",
-"13:00",
-"13:20",
-"13:40",
-"14:00"
-];
-
-const select = document.getElementById("time");
-
-times.forEach(time=>{
-    let option=document.createElement("option");
-    option.value=time;
-    option.textContent=time;
-    select.appendChild(option);
-});
-
-function reserve(){
-
-    const time=document.getElementById("time").value;
-    const name=document.getElementById("name").value.trim();
-    const student=document.getElementById("student").value.trim();
-
-    if(name==="" || student===""){
-        alert("이름과 학번을 입력하세요.");
-        return;
-    }
-
-    document.getElementById("result").innerHTML=
-    `
-    예약 완료!<br><br>
-    예약시간 : ${time}<br>
-    이름 : ${name}<br>
-    학번 : ${student}
-    `;
-
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
