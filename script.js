@@ -1,7 +1,7 @@
 // ==========================
 // Apps Script URL
 // ==========================
-const API = "여기에_AppsScript_URL";
+const API = "https://script.google.com/macros/s/AKfycbzCvHjRqEsh_qOhekzpSPdqEgQgOIdcUnS86U4h0l-AIZCABHoT0pDnMrATo4gmnMzdVg/exec";
 
 // ==========================
 // 예약 시간 설정
