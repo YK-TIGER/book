@@ -1,18 +1,31 @@
-const API = "여기에 Apps Script URL";
+// ==========================
+// Apps Script URL
+// ==========================
+const API = "여기에_AppsScript_URL_붙여넣기";
 
-const times = [
-    "10:00",
-    "10:20",
-    "10:40",
-    "11:00",
-    "11:20",
-    "11:40",
-    "13:00",
-    "13:20",
-    "13:40",
-    "14:00"
-];
+// ==========================
+// 예약 시간 설정
+// ==========================
+const START_HOUR = 10;
+const END_HOUR = 17;
+const INTERVAL = 10;
 
+// ==========================
+// 시간 생성
+// ==========================
+const times = [];
+
+for (let h = START_HOUR; h < END_HOUR; h++) {
+    for (let m = 0; m < 60; m += INTERVAL) {
+        times.push(
+            `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`
+        );
+    }
+}
+
+// ==========================
+// 시간 목록 생성
+// ==========================
 const select = document.getElementById("time");
 
 times.forEach(time => {
@@ -22,60 +35,113 @@ times.forEach(time => {
     select.appendChild(option);
 });
 
+// 시작 시 예약 현황
 loadReserved();
 
-async function loadReserved(){
+// 30초마다 새로고침
+setInterval(loadReserved, 30000);
 
-    const res = await fetch(API);
-    const reserved = await res.json();
+// ==========================
+// 예약 현황 불러오기
+// ==========================
+async function loadReserved() {
 
-    reserved.forEach(row=>{
+    try {
 
-        const option=[...select.options].find(o=>o.value===row[0]);
+        [...select.options].forEach(option => {
+            option.disabled = false;
+            option.textContent = option.value;
+        });
 
-        if(option){
-            option.disabled=true;
-            option.text += " (예약완료)";
-        }
+        const res = await fetch(API + "?t=" + Date.now());
+        const reserved = await res.json();
 
-    });
+        reserved.forEach(row => {
+
+            const option = [...select.options]
+                .find(o => o.value === row[0]);
+
+            if(option){
+                option.disabled = true;
+                option.textContent = `${row[0]} (예약완료)`;
+            }
+
+        });
+
+    } catch(err){
+
+        console.error(err);
+
+    }
 
 }
 
-async function reserve(){
+// ==========================
+// 예약하기
+// ==========================
+async function reserve() {
 
-    const time=document.getElementById("time").value;
-    const name=document.getElementById("name").value.trim();
-    const student=document.getElementById("student").value.trim();
+    const time = document.getElementById("time").value;
+    const name = document.getElementById("name").value.trim();
+    const student = document.getElementById("student").value.trim();
 
-    if(!name || !student){
-        alert("이름과 학번을 입력하세요.");
+    if (!name || !student) {
+        alert("이름과 학번을 입력해주세요.");
         return;
     }
 
-    const res = await fetch(API,{
-        method:"POST",
-        body:JSON.stringify({
-            time,
-            name,
-            student
-        })
-    });
+    try {
 
-    const result = await res.text();
+        const res = await fetch(API, {
+            method: "POST",
+            body: JSON.stringify({
+                time,
+                name,
+                student
+            })
+        });
 
-    if(result==="success"){
+        const result = await res.text();
 
-        document.getElementById("result").innerHTML=`
-            예약 완료!<br><br>
-            예약시간 : ${time}<br>
-            이름 : ${name}<br>
-            학번 : ${student}
-        `;
+        switch(result){
 
-    }else{
+            case "success":
 
-        alert("이미 예약된 시간입니다.");
+                document.getElementById("result").innerHTML = `
+                    <h3>예약 완료</h3>
+                    <p>예약시간 : ${time}</p>
+                    <p>이름 : ${name}</p>
+                    <p>학번 : ${student}</p>
+                `;
+
+                document.getElementById("name").value = "";
+                document.getElementById("student").value = "";
+
+                loadReserved();
+
+                break;
+
+            case "duplicate_time":
+
+                alert("이미 예약된 시간입니다.");
+                loadReserved();
+                break;
+
+            case "duplicate_student":
+
+                alert("이미 예약한 학번입니다.");
+                break;
+
+            default:
+
+                alert("예약에 실패했습니다.");
+
+        }
+
+    } catch(err){
+
+        console.error(err);
+        alert("서버 오류가 발생했습니다.");
 
     }
 
