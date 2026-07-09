@@ -1,7 +1,7 @@
 // ==========================
 // Apps Script URL
 // ==========================
-const API = "https://script.google.com/macros/s/AKfycbydYFWNewVV7XWFhe2-dcvoy_MVxnuL1xCIFuf6zCLR1AE3bMjHg-x--ZvFOGyQqwqx-w/exec";
+const API = "여기에_AppsScript_URL";
 
 // 시작
 loadList();
@@ -82,5 +82,3 @@ async function loadList() {
     }
 
 }
-
-loadList();
