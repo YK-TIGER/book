@@ -1,7 +1,7 @@
 // ==========================
 // Apps Script URL
 // ==========================
-const API = "https://script.google.com/macros/s/AKfycbxvC2jWo2P0CoYKh4vN-IiZQxVcja8E6epswGMUxZuS1bOXfS_k-wmfqqqRngyfTrQ0QQ/exec";
+const API = "https://script.google.com/macros/s/AKfycbzIvtkWLKGoAssdwUotKNiWUNzQ9vo3OUTrnK77lE47xrdL5nCw-4565r_9aHUOuHxjGw/exec";
 
 // 시작
 loadList();
