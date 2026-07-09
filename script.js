@@ -1,7 +1,7 @@
 // ==========================
 // Apps Script URL
 // ==========================
-const API = "https://script.google.com/macros/s/AKfycbydYFWNewVV7XWFhe2-dcvoy_MVxnuL1xCIFuf6zCLR1AE3bMjHg-x--ZvFOGyQqwqx-w/exec";
+const API = "https://script.google.com/macros/s/AKfycbxHZ7V1YK799DrCBk9QDB0li5IMMkxpI2sfIDla2SeqjvaPrfkRCucnPhT_mSODAa4u2Q/exec";
 
 // 페이지 시작
 loadSummary();
