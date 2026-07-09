@@ -82,5 +82,3 @@ async function loadList() {
     }
 
 }
-
-loadList();
