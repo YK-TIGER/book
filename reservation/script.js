@@ -151,6 +151,7 @@ async function reserve() {
         });
 
         const result = await response.text();
+        console.log(result);
 
         switch (result) {
 
