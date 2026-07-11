@@ -25,16 +25,10 @@
 
         <div class="form-card">
 
-            <label for="time">
-                예약 시간
-            </label>
-
+            <label for="time">예약 시간</label>
             <select id="time"></select>
 
-            <label for="name">
-                이름
-            </label>
-
+            <label for="name">이름</label>
             <input
                 type="text"
                 id="name"
@@ -42,21 +36,29 @@
                 maxlength="20"
                 autocomplete="off">
 
-            <label for="student">
-                학번
-            </label>
-
+            <label for="student">학번</label>
             <input
                 type="text"
                 id="student"
-                placeholder="학번을 입력하세요"
-                maxlength="20"
-                autocomplete="off">
+                placeholder="예) 24015"
+                maxlength="5"
+                inputmode="numeric"
+                autocomplete="off"
+                oninput="this.value=this.value.replace(/[^0-9]/g,'')">
 
-            <label for="people">
-                인원
-            </label>
+            <label for="phone">전화번호</label>
 
+            <input
+                type="tel"
+                id="phone"
+                placeholder="01012345678"
+                maxlength="11"
+                inputmode="numeric"
+                autocomplete="tel"
+                oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                        
+
+            <label for="people">인원</label>
             <select id="people">
                 <option value="1">1명</option>
                 <option value="2">2명</option>
@@ -67,18 +69,18 @@
         </div>
 
         <button onclick="reserve()">
-            ✅ 예약하기
+            예약하기
         </button>
 
         <div id="result"></div>
 
         <div class="button-group">
 
-            <button onclick="location.href='../'">
+            <button type="button" onclick="location.href='../'">
                 🏠 메인
             </button>
 
-            <button onclick="location.href='../list/'">
+            <button type="button" onclick="location.href='../list/'">
                 📋 예약자 명단
             </button>
 

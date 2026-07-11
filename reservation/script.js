@@ -16,11 +16,15 @@ const INTERVAL = 10;
 const times = [];
 
 for (let h = START_HOUR; h < END_HOUR; h++) {
+
     for (let m = 0; m < 60; m += INTERVAL) {
+
         times.push(
             `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`
         );
+
     }
+
 }
 
 // ==========================
@@ -40,7 +44,7 @@ times.forEach(time => {
 });
 
 // ==========================
-// 시작 시 예약 현황 조회
+// 시작 시 예약 목록 불러오기
 // ==========================
 loadReserved();
 
@@ -54,10 +58,11 @@ async function loadReserved() {
 
     try {
 
-        // 옵션 초기화
         [...select.options].forEach(option => {
+
             option.disabled = false;
             option.textContent = option.value;
+
         });
 
         const response = await fetch(API + "?t=" + Date.now());
@@ -72,14 +77,15 @@ async function loadReserved() {
             if (option) {
 
                 option.disabled = true;
-                option.textContent =
-                    `${row[0]} (예약완료)`;
+                option.textContent = `${row[0]} (예약완료)`;
 
             }
 
         });
 
-    } catch (error) {
+    }
+
+    catch (error) {
 
         console.error(error);
 
@@ -96,14 +102,31 @@ async function reserve() {
     const name = document.getElementById("name").value.trim();
     const student = document.getElementById("student").value.trim();
     const people = document.getElementById("people").value;
+    const phone = document.getElementById("phone").value.trim();
 
-    if (!name || !student) {
+    // 이름
+    if (name === "") {
 
-        alert("이름과 학번을 입력해주세요.");
+        alert("이름을 입력해주세요.");
         return;
 
     }
 
+    // 학번
+    if (!/^\d{5}$/.test(student)) {
+
+        alert("학번은 5자리 숫자로 입력해주세요.");
+        return;
+
+    }
+
+    if (!/^01\d{8,9}$/.test(phone)) {
+
+    alert("전화번호를 올바르게 입력해주세요.");
+
+    return;
+
+    }
     const button = document.querySelector("button");
 
     button.disabled = true;
@@ -120,6 +143,7 @@ async function reserve() {
                 time,
                 name,
                 student,
+                phone,
                 people
 
             })
@@ -133,15 +157,17 @@ async function reserve() {
             case "success":
 
                 document.getElementById("result").innerHTML = `
-                    <h3>예약 완료</h3>
-                    <p>예약 시간 : ${time}</p>
-                    <p>이름 : ${name}</p>
-                    <p>학번 : ${student}</p>
-                    <p>인원 : ${people}명</p>
+                    <h3>✅ 예약 완료</h3>
+                    <p><strong>예약 시간</strong> : ${time}</p>
+                    <p><strong>이름</strong> : ${name}</p>
+                    <p><strong>학번</strong> : ${student}</p>
+                    <p><strong>전화번호</strong> : ${phone}</p>
+                    <p><strong>인원</strong> : ${people}명</p>
                 `;
 
                 document.getElementById("name").value = "";
                 document.getElementById("student").value = "";
+                document.getElementById("phone").value = "";
                 document.getElementById("people").value = "1";
 
                 await loadReserved();
@@ -168,7 +194,9 @@ async function reserve() {
 
         }
 
-    } catch (error) {
+    }
+
+    catch (error) {
 
         console.error(error);
 

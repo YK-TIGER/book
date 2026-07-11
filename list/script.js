@@ -23,10 +23,10 @@ async function loadList() {
         // 시간순 정렬
         data.sort((a, b) => {
 
-            const t1 = a[0].split(":").map(Number);
-            const t2 = b[0].split(":").map(Number);
+            const [h1, m1] = a[0].split(":").map(Number);
+            const [h2, m2] = b[0].split(":").map(Number);
 
-            return (t1[0] * 60 + t1[1]) - (t2[0] * 60 + t2[1]);
+            return (h1 * 60 + m1) - (h2 * 60 + m2);
 
         });
 
@@ -50,14 +50,14 @@ async function loadList() {
 
             data.forEach(row => {
 
-                totalPeople += Number(row[3]);
+                totalPeople += Number(row[4]);
 
                 tbody.innerHTML += `
                     <tr>
                         <td>${row[0]}</td>
                         <td>${row[1]}</td>
                         <td>${row[2]}</td>
-                        <td>${row[3]}명</td>
+                        <td>${row[4]}명</td>
                     </tr>
                 `;
 
