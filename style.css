@@ -1,6 +1,6 @@
-/* ===========================
-   기본 설정
-=========================== */
+/* ==========================
+   ROOM ESCAPE - Horror Theme
+========================== */
 
 *{
     margin:0;
@@ -8,158 +8,134 @@
     box-sizing:border-box;
 }
 
+:root{
+
+    --bg:#090909;
+    --card:#151515;
+    --border:#500000;
+    --red:#b30000;
+    --red-hover:#d61d1d;
+    --text:#f2f2f2;
+    --sub:#b0b0b0;
+
+}
+
 body{
-    font-family:Arial, Helvetica, sans-serif;
-    background:#f4f4f4;
+
+    min-height:100vh;
+
     display:flex;
     justify-content:center;
-    align-items:flex-start;
-    min-height:100vh;
-    padding:30px 15px;
-
-    user-select:none;
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
-}
-
-input,
-textarea,
-select{
-    user-select:text;
-    -webkit-user-select:text;
-}
-
-/* ===========================
-   컨테이너
-=========================== */
-
-.container{
-    width:100%;
-    max-width:700px;
-
-    background:white;
+    align-items:center;
 
     padding:30px;
 
-    border-radius:16px;
+    background:
+        radial-gradient(circle at center,#1a1a1a 0%,#090909 70%);
 
-    box-shadow:0 8px 20px rgba(0,0,0,.15);
+    font-family:
+        "Pretendard",
+        "Noto Sans KR",
+        sans-serif;
+
+    color:var(--text);
+
 }
 
-/* ===========================
+/* ==========================
+   카드
+========================== */
+
+.container{
+
+    width:100%;
+    max-width:460px;
+
+    background:rgba(20,20,20,.97);
+
+    border:2px solid var(--border);
+
+    border-radius:16px;
+
+    padding:35px;
+
+    box-shadow:
+        0 0 10px rgba(255,0,0,.15),
+        0 0 40px rgba(255,0,0,.12);
+
+}
+
+/* ==========================
    제목
-=========================== */
+========================== */
 
-h1,
 h2{
+
     text-align:center;
-    margin-bottom:10px;
-}
 
-.subtitle{
-    text-align:center;
-    color:#666;
-    margin-bottom:30px;
-}
+    margin-bottom:28px;
 
-/* ===========================
-   메인 메뉴
-=========================== */
+    font-size:32px;
 
-.menu{
+    color:#ff3d3d;
 
-    display:flex;
-    flex-direction:column;
+    letter-spacing:3px;
 
-    gap:20px;
+    text-shadow:
+        0 0 8px rgba(255,0,0,.6);
+
+    user-select:none;
 
 }
 
-.card{
-
-    background:white;
-
-    border:2px solid #4CAF50;
-
-    border-radius:16px;
-
-    padding:25px;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-    box-shadow:0 4px 12px rgba(0,0,0,.12);
-
-}
-
-.card:hover{
-
-    transform:translateY(-5px);
-
-    box-shadow:0 10px 22px rgba(0,0,0,.18);
-
-    background:#4CAF50;
-
-    color:white;
-
-}
-
-.icon{
-
-    font-size:42px;
-
-    margin-bottom:15px;
-
-}
-
-.card-title{
-
-    font-size:24px;
-
-    font-weight:bold;
-
-    margin-bottom:10px;
-
-}
-
-.card-desc{
-
-    line-height:1.6;
-
-    opacity:.9;
-
-}
-
-/* ===========================
-   입력폼
-=========================== */
+/* ==========================
+   라벨
+========================== */
 
 label{
 
     display:block;
 
-    margin-top:18px;
+    margin-bottom:8px;
 
-    margin-bottom:6px;
+    color:#dddddd;
 
-    font-weight:bold;
+    font-size:15px;
+
+    user-select:none;
 
 }
+
+/* ==========================
+   입력창
+========================== */
 
 input,
 select{
 
     width:100%;
 
-    padding:12px;
+    padding:13px;
 
-    border:1px solid #ccc;
+    margin-bottom:18px;
 
-    border-radius:8px;
+    border-radius:10px;
 
-    font-size:16px;
+    border:1px solid #444;
+
+    background:#0f0f0f;
+
+    color:white;
+
+    font-size:15px;
+
+    transition:.2s;
+
+}
+
+input::placeholder{
+
+    color:#666;
 
 }
 
@@ -168,31 +144,38 @@ select:focus{
 
     outline:none;
 
-    border-color:#4CAF50;
+    border-color:#d00000;
+
+    box-shadow:
+        0 0 12px rgba(255,0,0,.45);
 
 }
 
-/* ===========================
+/* ==========================
    버튼
-=========================== */
+========================== */
 
 button{
 
     width:100%;
 
-    margin-top:20px;
-
-    padding:12px;
+    padding:15px;
 
     border:none;
 
-    border-radius:8px;
+    border-radius:10px;
 
-    background:#4CAF50;
+    background:linear-gradient(
+        180deg,
+        #d10000,
+        #840000
+    );
 
     color:white;
 
-    font-size:16px;
+    font-size:17px;
+
+    font-weight:bold;
 
     cursor:pointer;
 
@@ -202,190 +185,113 @@ button{
 
 button:hover{
 
-    background:#43a047;
+    transform:translateY(-2px);
+
+    background:linear-gradient(
+        180deg,
+        #f50000,
+        #9b0000
+    );
+
+    box-shadow:
+        0 0 18px rgba(255,0,0,.45);
 
 }
 
-.button-group{
+button:active{
 
-    display:flex;
-
-    gap:10px;
+    transform:scale(.98);
 
 }
 
-.button-group button{
+button:disabled{
 
-    margin-top:20px;
+    opacity:.6;
+
+    cursor:not-allowed;
 
 }
 
-/* ===========================
-   결과창
-=========================== */
+/* ==========================
+   예약 완료
+========================== */
 
 #result{
 
-    margin-top:25px;
+    margin-top:24px;
 
-    padding:15px;
+    padding:18px;
 
-    background:#f5f5f5;
+    border-left:5px solid #d00000;
+
+    background:#101010;
 
     border-radius:8px;
-
-    text-align:center;
 
     line-height:1.8;
 
 }
 
-/* ===========================
-   표
-=========================== */
+#result h3{
 
-table{
+    color:#ff5a5a;
 
-    width:100%;
-
-    margin-top:20px;
-
-    border-collapse:collapse;
+    margin-bottom:10px;
 
 }
 
-th{
+#result p{
 
-    background:#4CAF50;
-
-    color:white;
+    color:#eeeeee;
 
 }
 
-th,
-td{
+/* ==========================
+   스크롤바
+========================== */
 
-    border:1px solid #ddd;
+::-webkit-scrollbar{
 
-    padding:10px;
-
-    text-align:center;
-
-}
-
-tr:nth-child(even){
-
-    background:#fafafa;
+    width:8px;
 
 }
 
-tr:hover{
+::-webkit-scrollbar-thumb{
 
-    background:#eef8ee;
+    background:#550000;
+
+    border-radius:20px;
 
 }
 
-/* ===========================
+::-webkit-scrollbar-track{
+
+    background:#111;
+
+}
+
+/* ==========================
    모바일
-=========================== */
+========================== */
 
-@media(max-width:600px){
+@media(max-width:520px){
+
+    body{
+
+        padding:18px;
+
+    }
 
     .container{
 
-        padding:20px;
+        padding:24px;
 
     }
 
-    .card{
+    h2{
 
-        padding:20px;
-
-    }
-
-    .card-title{
-
-        font-size:22px;
+        font-size:27px;
 
     }
-
-    .icon{
-
-        font-size:38px;
-
-    }
-
-    .button-group{
-
-        flex-direction:column;
-
-    }
-
-    table{
-
-        font-size:14px;
-
-    }
-
-    th,
-    td{
-
-        padding:8px;
-
-    }
-
-}
-
-/* ===========================
-   예약 페이지
-=========================== */
-
-.form-card{
-
-    background:#fff;
-
-    border:1px solid #ddd;
-
-    border-radius:16px;
-
-    padding:25px;
-
-    margin-bottom:20px;
-
-    box-shadow:0 4px 12px rgba(0,0,0,.08);
-
-}
-
-.form-card label:first-child{
-    margin-top:0;
-}
-
-.button-group{
-
-    display:flex;
-
-    gap:12px;
-
-}
-
-.button-group button{
-
-    flex:1;
-
-}
-
-#result{
-
-    margin:20px 0;
-
-    padding:15px;
-
-    border-radius:10px;
-
-    background:#f8f8f8;
-
-    text-align:center;
-
-    min-height:24px;
 
 }
