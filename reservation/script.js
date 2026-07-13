@@ -10,6 +10,7 @@ const START_HOUR = 8;
 const END_HOUR = 12;
 const INTERVAL = 10;
 const MAX_PEOPLE_PER_TIME = 5;
+//a
 // ==========================
 // 예약 시간 생성
 // ==========================
