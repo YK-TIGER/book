@@ -170,7 +170,7 @@ async function reserve() {
                 document.getElementById("name").value = "";
                 document.getElementById("student").value = "";
                 document.getElementById("phone").value = "";
-                document.getElementById("people").value = "1";
+                document.getElementById("people").value = "2";
 
                 await loadReserved();
 
